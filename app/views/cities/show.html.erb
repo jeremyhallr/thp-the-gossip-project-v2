@@ -15,8 +15,8 @@
               <%= link_to "Supprimer", gossip_path(gossip.id), :confirm => "Are you sure?", :method => :delete %></br>
             <% end %>
           <% if logged_in? %>
-            <%= link_to "Like", likes_path %>
-            <%= link_to "Unlike", like_path(gossip.id), :method => :delete %>
+            <%= link_to "Like", gossip_likes_path(@gossip.id),  method: "post" %>
+            <%= link_to "Unlike", gossip_like_path(@gossip.id), :method => :delete %>
           <% end %>
           <small class="text-muted"><%= gossip.likes.count %> like(s)</small>
         </div>
