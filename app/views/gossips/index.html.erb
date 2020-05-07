@@ -15,10 +15,16 @@
           <p class="card-text">
             <%= gossip.content %>
             <small class="text-muted"><%= gossip.user.first_name %></small></br>
+            <%= link_to "Consulter", gossip_path(@gossip_id) %></br>
             <% if gossip.user == current_user %>
-              <%= link_to "Modifier", edit_gossip_path(@gossip_id) %></br>
-              <%= link_to "Supprimer", gossip_path(@gossip_id), :confirm => "Are you sure?", :method => :delete %>
+              <%= link_to "Modifier", edit_gossip_path(@gossip_id) %> -
+              <%= link_to "Supprimer", gossip_path(@gossip_id), :confirm => "Are you sure?", :method => :delete %></br>
             <% end %>
+            <% if logged_in? %>
+              <%= link_to "Like", likes_path %>
+              <%= link_to "Unlike", like_path(@gossip_id), :method => :delete %>
+            <% end %>
+            <small class="text-muted"><%= gossip.likes.count %> like(s)</small>
           </p>
         </div>
       </div>

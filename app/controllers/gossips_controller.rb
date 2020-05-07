@@ -9,13 +9,17 @@ class GossipsController < ApplicationController
 
     if @gossip.save
       puts "Operation success"
-      flash[:success] = "Création d'un potin "
+      flash[:success] = "Création d'un nouveau potin réussie"
       redirect_to new_session_path
     else
       puts "Failure"
       flash[:failure] = "Formulaire invalide"
       render :new
     end
+  end
+
+  def show
+    @gossip = Gossip.find(params[:id])
   end
 
   def index

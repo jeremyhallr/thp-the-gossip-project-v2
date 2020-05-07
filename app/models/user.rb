@@ -9,4 +9,5 @@ class User < ApplicationRecord
     presence: true,
     length: { minimum: 30 }
   has_secure_password
+  has_many :likes
 end

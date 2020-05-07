@@ -1,0 +1,26 @@
+<h1 class="text-center mt-4"><%= @city.name %></h1>
+
+<% @gossips.each do |gossip| %>
+
+  <div class="container">
+    <div class="card-deck">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= gossip.title %></h5>
+          <p>
+            <%= gossip.content %>
+            <small class="text-muted"><%= gossip.user.first_name %> <%= gossip.user.last_name %></small></br>
+            <% if gossip.user == current_user %>
+              <%= link_to "Modifier", edit_gossip_path(gossip.id) %> -
+              <%= link_to "Supprimer", gossip_path(gossip.id), :confirm => "Are you sure?", :method => :delete %></br>
+            <% end %>
+          <% if logged_in? %>
+            <%= link_to "Like", likes_path %>
+            <%= link_to "Unlike", like_path(gossip.id), :method => :delete %>
+          <% end %>
+          <small class="text-muted"><%= gossip.likes.count %> like(s)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     if @user.save
       puts "Operation success"
-      flash[:success] = "Création d'un nouveau profil "
+      flash[:success] = "Création d'un nouveau profil réussie"
       redirect_to new_session_path
     else
       puts "Failure"

@@ -5,4 +5,5 @@ class Gossip < ApplicationRecord
     presence: true,
     length: { minimum: 3 }
   validates :content, presence: true
+  has_many :likes
 end
