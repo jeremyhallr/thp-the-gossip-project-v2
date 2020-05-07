@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+   @gossip_sample = Gossip.all.sample
   end
 
   def create

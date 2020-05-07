@@ -21,8 +21,9 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <%= link_to "Feed", gossips_path, :class => "nav-link" %>
+          <li><%= link_to "Feed", gossips_path, :class => "nav-link" %></li>
         </ul>
+
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             <%= link_to "Se déconnecter", session_path(session.id), method: :delete, :class => "nav-link" %>
