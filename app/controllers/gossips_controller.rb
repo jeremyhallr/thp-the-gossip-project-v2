@@ -20,6 +20,14 @@ class GossipsController < ApplicationController
 
   def show
     @gossip = Gossip.find(params[:id])
+    @gossip_id = params[:id]
+
+    @comments = []
+    Gossip.all.each do |gossip|
+      gossip.comments.where(gossip_id: @gossip_id).each do |comment|
+        @comments << comment
+      end
+    end
   end
 
   def index

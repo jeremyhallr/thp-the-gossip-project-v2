@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :cities, only: [:show]
   resources :gossips do
     resources :likes
+    resources :comments
   end
 end

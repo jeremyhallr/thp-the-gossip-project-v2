@@ -22,3 +22,33 @@
       </div>
     </div>
   </div>
+
+<h2 class="text-center">Commentaires</h2>
+
+  <% @comments.each do |comment| %>
+  <% id = comment.id %>
+
+  <div class="container">
+    <div class="card-deck">
+      <div class="card" style="height:12rem;">
+        <div class="card-body">
+          <p> <%= comment.content %></p>
+          <p class="card-text">
+            <small class="text-muted"><%= comment.user.first_name %>, <%= comment.created_at %></small></br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if logged_in? %>
+    <%= form_tag gossip_comments_path(@gossip_id), method: "post" do %>
+
+      <%= label_tag 'Commentaire' %>
+      <%= text_area_tag 'content' %>
+      <br /> <br />
+
+    <%= submit_tag "Valider" %>
+    <% end %>
+  <% end %>
