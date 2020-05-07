@@ -1,0 +1,27 @@
+<div class="text-center mt-4 mb-4">
+  <h1>Gossip Feed</h1>
+
+  <%= link_to "Rédiger un Gossip", new_gossip_path, :class => "btn btn-primary btn-lg" %>
+</div>
+
+<% @gossips.each do |gossip| %>
+<% @gossip_id = gossip.id %>
+
+  <div class="container">
+    <div class="card-deck">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= gossip.title %></h5>
+          <p class="card-text">
+            <%= gossip.content %>
+            <small class="text-muted"><%= gossip.user.first_name %></small></br>
+            <% if gossip.user == current_user %>
+              <%= link_to "Modifier", edit_gossip_path(@gossip_id) %></br>
+              <%= link_to "Supprimer", gossip_path(@gossip_id), :confirm => "Are you sure?", :method => :delete %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

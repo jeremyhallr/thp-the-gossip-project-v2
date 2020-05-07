@@ -1,0 +1,15 @@
+<h1 class="text-center">Modification du Gossip <small class="text-muted">(<%= @gossip.id %>)</small></h1>
+
+  <%= form_tag gossip_path, method: "patch" do %>
+
+    <%= label_tag 'Titre' %>
+    <%= text_field_tag 'title', @gossip.title %>
+    <br /> <br />
+
+    <%= label_tag 'Gossip' %>
+    <%= text_field_tag 'text', @gossip.content %>
+    <br /> <br />
+
+    <%= submit_tag "Valider modification" %>
+
+  <% end %>
