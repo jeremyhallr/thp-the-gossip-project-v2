@@ -1,4 +1,4 @@
-<h1 class="text-center">Gossip N°<%= @gossip.id %></h1>
+<h1 class="text-center">Gossip N°<%= @gossip_id %></h1>
 
   <div class="container">
     <div class="card-deck">
@@ -9,12 +9,12 @@
             <%= @gossip.content %></br>
             <small class="text-muted"><%= @gossip.user.first_name %> <%= @gossip.user.last_name %> (<%= link_to "Ville", city_path(@gossip.user.city.id) %> : <%= @gossip.user.city.name %>)</small></br>
             <% if @gossip.user == current_user %>
-              <%= link_to "Modifier", edit_gossip_path(@gossip.id) %> -
-              <%= link_to "Supprimer", gossip_path(@gossip.id), :confirm => "Are you sure?", :method => :delete %></br>
+              <%= link_to "Modifier", edit_gossip_path(@gossip_id) %> -
+              <%= link_to "Supprimer", gossip_path(@gossip_id), :confirm => "Are you sure?", :method => :delete %></br>
             <% end %>
             <% if logged_in? %>
-              <%= link_to "Like", gossip_likes_path(@gossip.id),  method: "post" %>
-              <%= link_to "Unlike", gossip_like_path(@gossip.id), :method => :delete %>
+              <%= link_to "Like", gossip_likes_path(@gossip_id),  method: "post" %>
+              <%= link_to "Unlike", gossip_like_path(@gossip_id), :method => :delete %>
             <% end %>
             <small class="text-muted"><%= @gossip.likes.count %> like(s)</small>
           </p>
@@ -35,6 +35,9 @@
           <p> <%= comment.content %></p>
           <p class="card-text">
             <small class="text-muted"><%= comment.user.first_name %>, <%= comment.created_at %></small></br>
+            <% if comment.user == current_user %>
+              <%= link_to "Supprimer", gossip_comment_path(id), :confirm => "Are you sure?", :method => :delete %></br>
+            <% end %>
           </p>
         </div>
       </div>

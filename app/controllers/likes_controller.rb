@@ -7,7 +7,7 @@ class LikesController < ApplicationController
 
     if @like.save
       puts "Operation success"
-      flash[:success] = "Création d'un nouveau potin réussie"
+      flash[:success] = "Like ajouté"
       redirect_to gossips_path
     else
       puts "Failure"
@@ -20,13 +20,14 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.find(params[:id])
-    if current_user
-      @like.destroy
-      redirect_to gossips_path
-    else
-      flash[:failure] = "Non autorisé"
-      redirect_to gossips_path
+    @likes = Gossip.find(params[:id]).likes
+
+    @likes.each do |like|
+      if like.user == current_user
+        flash[:success] = "Like supprimé"
+        like.destroy
+      end
     end
+    redirect_to gossips_path
   end
 end

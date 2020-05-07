@@ -4,6 +4,12 @@
   <%= link_to "Rédiger un Gossip", new_gossip_path, :class => "btn btn-primary btn-lg" %>
 </div>
 
+<% flash.each do |type, msg| %>
+  <div class="alert alert-info text-center" role="alert">
+    <%= msg %>
+  </div>
+<% end %>
+
 <% @gossips.each do |gossip| %>
 <% @gossip_id = gossip.id %>
 
@@ -22,7 +28,7 @@
             <% end %>
             <% if logged_in? %>
               <%= link_to "Like", gossip_likes_path(@gossip_id),  method: "post" %>
-              <%= link_to "Unlike", gossip_like_path(gossip.user.id, @gossip_id), :method => :delete %>
+              <%= link_to "Unlike", gossip_like_path(@gossip_id, @gossip_id), :method => :delete %>
             <% end %>
             <small class="text-muted"><%= gossip.likes.count %> like(s)</small>
           </p>
