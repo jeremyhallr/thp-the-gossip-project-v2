@@ -1,0 +1,57 @@
+<h1 class="text-center">Page d'inscription</h1>
+
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-danger text-center" role="alert">
+      <%= msg %>
+    </div>
+  <% end %>
+
+
+<div class="container col-md-3">
+    <div class="form-group text-center">
+
+      <%= form_tag users_path, method: "post" do %>
+
+       <div class="form-group">
+        <%= label_tag 'Prénom' %>
+        <%= text_field_tag 'first_name',nil, class: 'form-control' %>
+        <br /> <br />
+      </div>
+
+       <div class="form-group">
+        <%= label_tag 'Nom' %>
+        <%= text_field_tag 'last_name',nil, class: 'form-control' %>
+        <br /> <br />
+      </div>
+
+       <div class="form-group">
+        <%= label_tag 'Email' %>
+        <%= text_field_tag 'email',nil, class: 'form-control' %>
+        <br /> <br />
+      </div>
+
+       <div class="form-group">
+        <%= label_tag 'Âge' %>
+        <%= text_field_tag 'age',nil, class: 'form-control' %>
+        <br /> <br />
+      </div>
+
+       <div class="form-group">
+        <%= label_tag 'Description' %>
+        <%= text_area_tag 'description',nil, class: 'form-control' %>
+        <br /> <br />
+      </div>
+
+       <div class="form-group">
+        <%= label_tag 'Mot de passe' %>
+        <%= text_field_tag 'password',nil, class: 'form-control' %>
+        <br /> <br />
+      </div>
+
+        <%= submit_tag "Valider inscription", class: "btn btn-primary" %>
+
+      <% end %>
+
+    </div>
+
+</div>
