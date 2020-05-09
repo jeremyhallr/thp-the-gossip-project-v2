@@ -9,4 +9,9 @@ class User < ApplicationRecord
     presence: true
   has_secure_password
   has_many :likes
+
+  def remember(remember_token)
+    remember_digest = BCrypt::Password.create(remember_token)
+    self.update(remember_digest: remember_digest)
+  end
 end
